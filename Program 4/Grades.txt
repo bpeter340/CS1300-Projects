@@ -1,0 +1,5 @@
+All Available 	99999 aaa@indianatech.net 5 50 5 18 20 16 10 20 20 20 20 20 100 100 20 200
+Dear John 	51928 Dnj@indianatech.net 5 30 5 16 14 12 10 20 20 20 20 13  80  90 20 180
+Chris Taylor 	34029 CsT@indianatech.net 5 45 2 12 13 10  5 10 13 16 18 20  70  80 15 150
+Ruby Dunsfield	23980 RlM@indianatech.net 0 0  0  0  0  0  0 20 20 20 20 20  50  90 18 200
+Hatt Manson 	45980 HtM@indianatech.net 4 45 4 10 12 16  8 15 16 18 17 20  85  90 15 160 			
