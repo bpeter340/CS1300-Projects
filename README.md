@@ -1,6 +1,6 @@
 # CS1300-Projects
 
-###### This repository contains a series of projects I have completed while taking CS1300 at Indiana Tech.
+###### This repository contains a series of projects I have completed while taking CS1300 at Indiana Tech. Each program is associated with its own objective and design document for futher clarity.
 
 # Program 2
 
