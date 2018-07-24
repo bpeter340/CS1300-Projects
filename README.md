@@ -40,7 +40,7 @@ Write a program that uses a random number generator to generate a two digit posi
 - [x] Sum the digits of the number.
 - [x] If the number is a two digit number, then raise the first digit to the power of the second digit.
 - [x] If the number is a three digit number and the last digit is less than or equal to 4, then raise the first two digits to the power of the last digit.
-- [x] If the manipulated number ever become less than 10, add to to it
+- [x] If the manipulated number ever become less than 10, add 10 to it
 - [x] Along each stop of the way check whether or not the manipulated number is prime
 
 ## Design Documents
