@@ -8,12 +8,12 @@
 
 using namespace std;
 
-int double_Num(int& temp_1);
-int reversed_Num(int temp_2);
-int raised_Num(int temp_3 , int x);
-int combined_Num(int temp_4);
-int digit_Count(int temp_5);
-void triple_Check(int temp_6);
+int double_Num(int input);
+int reversed_Num(int input);
+int raised_Num(int input , int powerFactor);
+int combined_Num(int input);
+int _2_digit_num_manipulator(int input);
+void special_case_manipulator(int input);
 void prime_Number(int num);
 int ten_Check(int num);
 string space = "   "; 
@@ -22,12 +22,12 @@ string space = "   ";
 int main()
 {
 	int manip;
-	int x;
+	int option;
 	srand(time(0));
 	manip= rand() % 100;
 	
 	
-		for(int i=0; i==10; i++)
+		for(int i=0; i<10; i++)
 			cout<<space;
 		
 //Instructions for case switch statement		
@@ -51,9 +51,9 @@ int main()
 	do
 	{	
 		cout << space;
-		cin >> x;
+		cin >> option;
 		cout << endl;
-		switch (x)
+		switch (option)
 	{
 		case 1:
 		srand(time(0));
@@ -78,7 +78,7 @@ int main()
 		
 	case 4:
 		cout <<space<< "Enter a value (2, 3, or 4) to raise " <<manip<< " to that power " <<endl;
-		manip = raised_Num(manip, x);
+		manip = raised_Num(manip, option);
 		cout <<space<< manip;
 		prime_Number(manip);
 		break;
@@ -93,7 +93,7 @@ int main()
 	case 6:	
 		cout <<space<< "If the value of '"<<manip<<"' is a two digit number, then the first " 
 		<< endl <<space<< "digit will be raised to the power of the second digit"<< endl << endl;
-		manip = digit_Count(manip);
+		manip = _2_digit_num_manipulator(manip);
 		cout <<space<< manip;
 		prime_Number(manip);
 		break;
@@ -101,7 +101,7 @@ int main()
 	case 7:
 		cout <<space<< "If the value of '"<<manip<<"' is a three digit number and the last digit is less than or equal to 4"
 		 << endl <<space<< "the first two digits will be raised to the power of the last digit " << endl << endl;
-		triple_Check(manip);
+		special_case_manipulator(manip);
 		cout <<space<< manip;
 		prime_Number(manip);
 		break;
@@ -113,39 +113,38 @@ int main()
 		 cout <<space<< "Invalid input" << endl;
 	}	
 	}
-	while(x);	
+	while(option);	
 	
 	return 0;
 }
 
-int double_Num(int& temp_1)
+int double_Num(int input)
 {
-	int num = 2 * temp_1;
-	num = ten_Check(num);
-	return num;
+	input = 2 * input;
+	input = ten_Check(input);
+	
+	return input;
 }
 
-int raised_Num(int temp_3, int x)
+int raised_Num(int input, int powerFactor)
 {
-	bool isFound;
-	isFound = true;
+	bool isFound = true;
 	int val;
 	
 	while(isFound)
 	{	
 		cout <<space;
-		cin >> x;
-			if (x >= 2 && x <= 4 )	
+		cin >> powerFactor;
+			if (powerFactor >= 2 && powerFactor <= 4 )	
 			{
-				cout << endl;
-				cout <<space<< temp_3 << " raised to the power of " << x << " = ";  
-				cout << pow(temp_3,x) << endl << endl;
 				isFound = false;
-				val = pow(temp_3,x);
+				cout << endl;
+				cout <<space<< input << " raised to the power of " << powerFactor << " = ";  
+				cout << pow(input, powerFactor) << endl << endl;
+				val = pow(input, powerFactor);
 			}
 			else 
 			{
-				isFound = false;
 				cout <<space<<"The value entered is not valid, use only numbers 2, 3, or 4" <<endl << endl;
 			}
 	}
@@ -154,92 +153,87 @@ int raised_Num(int temp_3, int x)
 	return val;	
 }
 
-int reversed_Num(int temp_2)
+int reversed_Num(int input)
 {
 	int new_Num = 0;
-	while(temp_2 > 0)
+	while(input > 0)
 	{
-		new_Num = new_Num*10 + (temp_2 % 10);
-		temp_2 = temp_2/10;
+		new_Num = new_Num*10 + (input % 10);
+		input = input/10;
 	}
 		new_Num= ten_Check(new_Num);
 	return new_Num;
 }
 
-int combined_Num(int temp_4)
+int combined_Num(int input)
 {
 	int sum = 0;
-	while(temp_4 > 0)
+	while(input > 0)
 	{
-		sum += temp_4 % 10;
-		temp_4 /= 10;
+		sum += input % 10;
+		input /= 10;
 	} 
 		sum = ten_Check(sum);
 	return sum;
 }
 
-int digit_Count(int temp_5)
+int _2_digit_num_manipulator(int input)
 {
-	int digits;
-	int x;
-	int y;
-	int val ;
-	int num;
-	num = temp_5; 
+	int countDigit = 0;
+	int digit_1 = 0;
+	int digit_2 = 0;
+	int value; 
 	
-	while(temp_5 != 0)	
+	while(input != 0)	
 	{
-		temp_5 /= 10;
-		digits++;
+		input /= 10;
+		countDigit++;
 	}
-		if (digits == 2)
+		if (countDigit == 2)
 		{
-			x = num/10 % 10;
-			y = num % 10;
-			val = pow(x,y);
-			cout <<space<< "When " << x << " is raised to the power of " << y <<" the new value = " << val << endl <<endl;
+			digit_1 = input/10 % 10;
+			digit_2 = input % 10;
+			value = pow(digit_1,digit_2);
+			cout <<space<< "When " << digit_1 << " is raised to the power of " << digit_2 <<" the new value = " << value << endl <<endl;
 		}
 		else
 			cout <<space<< "The number in the previous step is not a two digit number" << endl;
 		
-		val = ten_Check(val);
-	return val;
+		value = ten_Check(value);
+	return value;
 }
 
-void triple_Check(int temp_6)	
+void special_case_manipulator(int input)	
 {
-	int num_2;
-	int digits_2;
-	int x;
-	int y;
-	int z;
-	int val;
+	int countDigit = 0;
+	int digit_1 = 0;
+	int digit_2 = 0;
+	int digit_3 = 0;
 	int num;
 
-	num_2 = temp_6;
-	
-	while (temp_6 != 0)
+	while (input != 0)
 	{
-		temp_6 /= 10;
-		digits_2++;
+		input /= 10;
+		countDigit++;
 	}
 
-	x = num_2/100 % 10;
-	y = num_2/10 % 10;
-	z = num_2 % 10;	
-		if (digits_2 == 3 && z <= 4)
+	digit_1 = input/100 % 10;
+	digit_2 = input/10 % 10;
+	digit_3 = input % 10;	
+		if (countDigit == 3 && digit_3 <= 4)
 		{
 			
-				cout <<space<< x <<" raised to the power of "<< z << " = " << pow(x,z) <<endl;
-				num = pow(x,z);
+				num = pow(digit_1, digit_3);
+				cout <<space<< digit_1 <<" raised to the power of "<< digit_3 << " = " << num <<endl;
 				prime_Number(num); 
-				cout <<space<< y <<" raised to the power of " << z << " = "  << pow(y,z) <<endl;
-				num = pow(y,z);
+				
+				num = pow(digit_2, digit_3);
+				cout <<space<< digit_2 <<" raised to the power of " << digit_3 << " = "  << pow(digit_2, digit_3) <<endl;
 				prime_Number(num);
 		}
-		else if (digits_2 != 3)		
+		else if (countDigit != 3)		
 				cout <<space<< "The number is not a three digit number "<< endl;
-		else if (z > 4)
+		else if (digit_3 > 4)
 			cout <<space<< "The number contains three digits, but the last digit is not less than or equal to 4"  <<endl;
 			 		
 }
