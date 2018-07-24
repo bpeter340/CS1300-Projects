@@ -60,9 +60,9 @@ Post-conditions:
 - Output is accurate
 - Tracking/testing operation results along the way
 
-# GradeBook
+# Gradebook
 
-###### Gradeook Objective
+###### Gradebook Objective
 
 Write a program that reads the information for 5 students from a text file to populate a professors gradebook. Data for each student should be nicely formatted and displayed. Perform the folloing operations:
 - [x] Calculate total quiz, program, exam, and final scores
