@@ -75,6 +75,7 @@ Design and implement a program that takes user input from a text file that input
 
 
 Pre-conditions:
+- Student 'All Available' provides the student's gold standard
 - User input comes from a text file
 - Program restricts user input
 - Information for 5 students are provided
