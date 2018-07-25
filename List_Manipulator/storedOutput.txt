@@ -20,8 +20,8 @@
 96         97         98         99         100        
 
 
-The largest value in the list_manip of numbers is:  100
-The smallest value in the list_manip of numbers is:  1
+The largest value in the list of numbers is:  100
+The smallest value in the list of numbers is:  1
 
 100        99         98         97         96         
 95         94         93         92         91         
@@ -45,7 +45,7 @@ The smallest value in the list_manip of numbers is:  1
 5          4          3          2          1          
 
 
-This is the average of the list_manip  50.5
-This is the variance of the list_manip  841.667
-This is the standard deviation of the list_manip  29.0115
+This is the average of the list  50.5
+This is the variance of the list  841.667
+This is the standard deviation of the list  29.0115
 

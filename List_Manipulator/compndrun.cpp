@@ -4,49 +4,52 @@
 #include <cmath>
 
 using namespace std;
+
+const int SIZE = 100;
 const int rows = 20;
 const int columns = 5;
-const int SIZE = 100;
-float list_manip[SIZE];
-ifstream inFile;
-ofstream outFile;
-
-void builder();
-void input();
-void increasing_list_manip();
-float maxValue();
-float minValue();
-void decreasing_list_manip();
-float sum(float list_manip[], int num);
-float variance(float average);
+double list_manip[SIZE];
 char space = ' ';
+
+
+void get_input();
+void list_sort(bool &check_sort);
+double maxValue(bool check_sort);
+double minValue(bool check_sort);
+double sum_array(double list_manip[], int listSize);
+double get_variance(double average);
+
 
 int main()
 {
+	ofstream outFile;
+	outFile.open("storedOutput.txt");
 	
-	inFile.open("Array.txt");
-	outFile.open("arrayout.txt");
 	
-	input();
+	bool check_sort = false;
 	
-	float largest = maxValue();
-	float smallest = minValue();
-	float total = sum(list_manip, SIZE);	
-	float average = total / SIZE;	
-	float var = variance(average);
-	float standard_Dev = sqrt(var);
+	get_input();
+	list_sort(check_sort);	
+
+	double largest_value = maxValue(check_sort);
+	double smallest_value = minValue(check_sort);
+	double total = sum_array(list_manip, SIZE);	
+	double average = total / SIZE;	
+	double variance = get_variance(average);
+	double standard_Dev = sqrt(variance);
+	
 	
 	cout << endl;
-	increasing_list_manip();
 	
-//Used to organize output in rows and columns
-//Also used to organize values in an output file
+
+	
+//Used to organize output in columns in both th console window and text file
 	for (int i= 0; i < rows; i++)
 	{
 		for (int j= 0; j < columns; j++)
 			{
-			cout << left << setw(10) << list_manip[i*5+j] ;
-			outFile << left << setw(10) << list_manip[i*5+j] << space;
+			cout << left << setw(10) << list_manip[i*columns+j] ;
+			outFile << left << setw(10) << list_manip[i*columns+j] << space;
 			}
 		cout << endl;
 		outFile << endl;
@@ -54,10 +57,10 @@ int main()
 	cout << endl << endl;
 	outFile << endl << endl;
 	
-	cout << "The largest value in the list_manip of numbers is:  " << largest << endl;
-	outFile << "The largest value in the list_manip of numbers is:  " << largest << endl;
-	cout << "The smallest value in the list_manip of numbers is:  " << smallest << endl << endl; 
-	outFile << "The smallest value in the list_manip of numbers is:  " << smallest << endl << endl;
+	cout << "The largest value in the list of numbers is:  " << largest_value << endl;
+	outFile << "The largest value in the list of numbers is:  " << largest_value << endl;
+	cout << "The smallest value in the list of numbers is:  " << smallest_value << endl << endl; 
+	outFile << "The smallest value in the list of numbers is:  " << smallest_value << endl << endl;
 	
 	
 	
@@ -76,78 +79,52 @@ int main()
 	cout << endl << endl;
 	outFile << endl << endl;
 	
-	cout << "This is the average of the list_manip  " << average << endl;
-	outFile << "This is the average of the list_manip  " << average << endl;
-	cout << "This is the variance of the list_manip  " << var << endl;
-	outFile <<  "This is the variance of the list_manip  " << var << endl;
-	cout << "This is the standard deviation of the list_manip  " << standard_Dev << endl << endl;
-	outFile <<  "This is the standard deviation of the list_manip  " << standard_Dev << endl << endl;
+	cout << "This is the average of the list  " << average << endl;
+	outFile << "This is the average of the list  " << average << endl;
+	cout << "This is the variance of the list  " << variance << endl;
+	outFile <<  "This is the variance of the list  " << variance << endl;
+	cout << "This is the standard deviation of the list  " << standard_Dev << endl << endl;
+	outFile <<  "This is the standard deviation of the list  " << standard_Dev << endl << endl;
 	
 		
-	inFile.close();
+
 	outFile.close();
+	
 	return 0;
 }
 
-//Function sorts the array from largest to smallest 
-void decreasing_list_manip()
-{
-	int temp;
-	int smallestIndex;
-	int location;
-	int i;
-	
-	for (i = 0; i < SIZE - 1 ; i++) // these are the numbers for input
-	{
-		smallestIndex = i;
-		
-		for (location = i + 1; location < SIZE; location++)
-			if (list_manip[smallestIndex] > list_manip[location])
-				smallestIndex = location;
-				
-			temp = list_manip[smallestIndex];
-			list_manip[smallestIndex] = list_manip[i];
-			list_manip[i] = temp;
-	}
-}
 
 //Function finds the Largest value in the stored array
-// Very Buggy
-float maxValue()
+double maxValue(bool check_sort)
 {
-	float MAX;
-	for (int i = 1; i < SIZE; i++)
-	{
-		if (list_manip[i] > list_manip[i-1])
-			MAX = list_manip[i];
-	//	else
-	//		MAX = list_manip[i-1];
-	}
+	double MAX;
+	
+	if(check_sort)
+		MAX = list_manip[SIZE-1];
+	
 	return MAX;	
 }
 
 //Function finds the smallest value in the stored array 
-// Very buggy
-float minValue()
+double minValue(bool check_sort)
 {
-	float MIN;
-	for (int i = 1; i < SIZE ; i++)
-		{
-		if (list_manip[i] < list_manip[i-1])
-			MIN = list_manip[i];
-		} 
+	int MIN;
+	
+	if(check_sort)
+		MIN = list_manip[0];
+
 	return MIN;
 }
 
 //Function sorts the list from smallest to largest
-void increasing_list_manip()
+//Will more that likely replace by bubble sort due to inefficiency
+void list_sort(bool &check_sort)
 {
 	int temp;
 	int smallestIndex;
 	int location;
-	int i;
 	
-	for (i = 0; i < SIZE - 1 ; i++) // these are the numbers for input
+	for (int i = 0; i < SIZE - 1 ; i++) 
 	{
 		smallestIndex = i;
 		
@@ -161,19 +138,25 @@ void increasing_list_manip()
 		
 	}
 	
+	check_sort = true;
 }
 
 //Function gets input from a test file
-void input()
+void get_input()
 {
+	ifstream inFile;
+	inFile.open("input_list.txt");
+	
 	for (int i = 0; i < SIZE; i++)
 		inFile >> list_manip[i];
+		
+	inFile.close();
 }
 
 //Function finds the sum of all stored values
-float sum(float list_manip[], int num)
+double sum_array(double list_manip[], int listSize)
 {
-	float answer = 0;
+	double answer = 0;
 	for (int i = 0 ; i < SIZE; i++)
 	{
 		answer += list_manip[i];
@@ -182,17 +165,16 @@ float sum(float list_manip[], int num)
 }
 
 //Function used to calculate the variance of the stored numbers
-float variance(float average)
+double get_variance(double average)
 {
-	float temp, ans, root;
-	float var= 0;
+	double item, variance;
+	double summation = 0;
 	for (int i = 0; i < SIZE; i++)
 		{
-			temp = pow((list_manip[i] - average), 2);
-			var += temp; 
+			item = pow((list_manip[i] - average), 2);
+			summation += item; 
 		}
-	ans = var /(SIZE - 1);
-	return ans;
-		
+	variance = summation /(SIZE - 1);
+	return variance;		
 }
 
