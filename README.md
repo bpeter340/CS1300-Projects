@@ -1,10 +1,10 @@
 # CS1300-Projects
 
-###### This repository contains a series of projects I have completed while taking CS1300 at Indiana Tech. Each program is associated with its own objective statment and design document for futher clarity.
+###### This repository contains a series of projects I have completed while taking CS1300 at Indiana Tech. Each program is associated with its own objective statment, tasks list, and design document to provide further clarity.
 
-# Program 2
+# List_Manipulator
 
-###### Program 2 Objective
+###### List_Manipulator Objective
 Design and implement a program which will read in a text file that will fill an array of 100 random integers.
 
 - [x] Print the array out in five columns (on screen and to a file)
@@ -28,9 +28,9 @@ Post-conditions:
 - Array data is manipulated, for loops, and functions are manipulated to produce output
 - Data is clear, nicely formatted and visible to users
 
-# Program 3
+# RandomInt_Manipulator
 
-###### Program 3 Objective
+###### RandomInt_Manipulator Objective
 
 Write a program that uses a random number generator to generate a two digit positive intergerand allows the user to perform one or more of the following operations:
 
@@ -40,6 +40,8 @@ Write a program that uses a random number generator to generate a two digit posi
 - [x] Sum the digits of the number.
 - [x] If the number is a two digit number, then raise the first digit to the power of the second digit.
 - [x] If the number is a three digit number and the last digit is less than or equal to 4, then raise the first two digits to the power of the last digit.
+- [x] If the manipulated number ever become less than 10, add 10 to it
+- [x] Along each stop of the way check whether or not the manipulated number is prime
 
 ## Design Documents
 Design and implement a program that manipulates random numbers and is semi-interactive with the user. The program should function in menu format, giving the user options as the follow the flow of the program. Be sure to make each operation dependent on the operations of the previous step.
@@ -56,10 +58,11 @@ Post-conditions:
 - All operations of the program work
 - Data is well organized
 - Output is accurate
+- Tracking/testing operation results along the way
 
-# Program 4
+# Gradebook
 
-###### Program 4 Objective
+###### Gradebook Objective
 
 Write a program that reads the information for 5 students from a text file to populate a professors gradebook. Data for each student should be nicely formatted and displayed. Perform the folloing operations:
 - [x] Calculate total quiz, program, exam, and final scores
@@ -72,6 +75,7 @@ Design and implement a program that takes user input from a text file that input
 
 
 Pre-conditions:
+- Student 'All Available' provides the student's gold standard
 - User input comes from a text file
 - Program restricts user input
 - Information for 5 students are provided
