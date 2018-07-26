@@ -16,7 +16,7 @@ void get_input();
 void list_sort(bool &check_sort);
 double maxValue(bool check_sort);
 double minValue(bool check_sort);
-double sum_array(double list_manip[], int listSize);
+double sum_array();
 double get_variance(double average);
 
 
@@ -33,7 +33,7 @@ int main()
 
 	double largest_value = maxValue(check_sort);
 	double smallest_value = minValue(check_sort);
-	double total = sum_array(list_manip, SIZE);	
+	double total = sum_array();	
 	double average = total / SIZE;	
 	double variance = get_variance(average);
 	double standard_Dev = sqrt(variance);
@@ -136,8 +136,6 @@ void list_sort(bool &check_sort)
 			list_manip[i] = temp;
 			swapped = true;
 			}
-
-		
  	}
      }
  	while(swapped);
@@ -160,7 +158,7 @@ void get_input()
 }
 
 //Function finds the sum of all stored values
-double sum_array(double list_manip[], int listSize)
+double sum_array()
 {
 	double answer = 0;
 	for (int i = 0 ; i < SIZE; i++)
