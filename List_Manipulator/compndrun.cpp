@@ -69,7 +69,7 @@ int main()
 		int k = 0;
 		for (int j= 5; j > 0 ; j--)
 			{	
-			++k;
+			k++;
 			cout << left << setw(10) << list_manip[i*5-k] << space ;
 			outFile << left << setw(10) << list_manip[i*5-k] << space ;
 			}
@@ -121,25 +121,31 @@ double minValue(bool check_sort)
 void list_sort(bool &check_sort)
 {
 	int temp;
-	int smallestIndex;
-	int location;
-	
-	for (int i = 0; i < SIZE - 1 ; i++) 
+	bool swapped;
+
+	do{
+		
+		swapped = false;
+		
+	for (int i = 0; i < SIZE - 1; i++) 
 	{
-		smallestIndex = i;
-		
-		for (location = i + 1; location < SIZE; location++)
-			if (list_manip[smallestIndex] > list_manip[location])
-				smallestIndex = location;
-				
-			temp = list_manip[smallestIndex];
-			list_manip[smallestIndex] = list_manip[i];
+			if (list_manip[i] > list_manip[i + 1])
+			{
+			temp = list_manip[ i + 1];
+			list_manip[i + 1] = list_manip[i];
 			list_manip[i] = temp;
+			swapped = true;
+			}
+
 		
-	}
+ 	}
+     }
+ 	while(swapped);
 	
 	check_sort = true;
 }
+
+
 
 //Function gets input from a test file
 void get_input()
